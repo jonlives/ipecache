@@ -1,0 +1,18 @@
+PATH
+  remote: .
+  specs:
+    ipecache (0.0.1)
+      app_conf (>= 0.4.0)
+      choice (>= 0.1.6)
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    app_conf (0.4.0)
+    choice (0.1.6)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  ipecache!

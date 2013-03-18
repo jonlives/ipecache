@@ -1,0 +1,13 @@
+Ipecache
+----------
+Author:: Jon Cowie (<jcowie@etsy.com>)
+Copyright:: Copyright (c) 2013 Jon Cowie
+License:: GPL
+
+Plugin API
+----------
+Modified version of code added to knife-spork under the following license:
+
+Author:: Seth Vargo (<svargo@customink.com>)
+Copyright:: Copyright (c) 2012 Seth Vargo
+License:: GPL

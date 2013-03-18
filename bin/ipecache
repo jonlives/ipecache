@@ -1,0 +1,81 @@
+#!/usr/bin/env ruby
+
+# ipecache - A command line memcached traffic analyzer
+#
+# Author:: Jon Cowie (<jcowie@etsy.com>)
+
+require 'choice'
+require 'ipecache/runner'
+include Ipecache::Runner
+
+Choice.options do
+  header ""
+  header "Specific options:"
+
+  option :status, :required => false do
+    long  '--status'
+    desc  'Show ipecache status information'
+  end
+
+  option :urlfile, :required => false do
+    short '-f'
+    long  '--file=PATH_TO_URL_FILE'
+    desc  'File containing urls to purge from caches'
+  end
+
+  option :url, :required => false do
+    short '-u'
+    long  '--url=URL_TO_PURGE'
+    desc  'URL to be purged from caches'
+  end
+
+  option :proxyonly, :required => false do
+    short '-p'
+    long  '--proxy-only'
+    desc  'Only purge from proxies'
+  end
+
+  option :cdnonly, :required => false do
+    short '-c'
+    long  '--cdn-only'
+    desc  'Only purge from CDNs'
+  end
+end
+
+if Choice.choices[:status]
+  puts "Ipecache Status:"
+  puts ""
+  Ipecache::Plugins.klasses.each do |klass|
+    plugin = klass.new(:config => ipecache_config)
+    puts "#{klass}: #{plugin.enabled? ? 'enabled' : 'disabled'}"
+  end
+  exit 0
+end
+
+if Choice.choices[:url]
+  @urls = [Choice.choices[:url]]
+elsif  Choice.choices[:urlfile]
+  urlfile = Choice.choices[:urlfile]
+  if File.exists?(urlfile)
+    @urls = File.open(urlfile, 'r').readlines
+  else
+    puts "Error: #{urlfile} doesn't exist."
+    exit 1
+  end
+else
+  Choice.help
+end
+
+if !Choice.choices[:cdnonly]
+  puts ""
+  puts "Running plugins registered for Proxy Purge..."
+  puts ""
+  run_plugins(:proxy_purge)
+end
+
+if !Choice.choices[:proxyonly]
+  puts ""
+  puts "Running plugins registered for CDN Purge..."
+  puts ""
+  run_plugins(:cdn_purge)
+end
