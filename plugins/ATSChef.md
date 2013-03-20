@@ -1,6 +1,6 @@
 ATSChef
 ========
-Queries chef for nodes in the specified role and purges the URL list from each server
+Queries chef for nodes in the specified role and purges the URL list from each Apache Traffic Server
 
 Gem Requirements
 ----------------
