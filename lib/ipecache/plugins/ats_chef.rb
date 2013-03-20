@@ -11,6 +11,7 @@ module Ipecache
         safe_require 'uri'
 
         knife_file = config.knife_config || ""
+        chef_role = config.chef_role
 
         if knife_file.empty?
           plugin_puts "No knife config file specified. Exiting..."
@@ -23,11 +24,16 @@ module Ipecache
           exit 1
         end
 
+        if !chef_role
+          plugin_puts "Chef role not specified, Exiting..."
+          exit 1
+        end
+
         puts ""
         plugin_puts "Beginning URL Purge from ATS..."
         plugin_puts "Finding ATS Servers..."
         nodes_ats_fqdns = []
-        nodes_ats = rest_api.get_rest("/search/node?q=role:ATSImgCache" )
+        nodes_ats = rest_api.get_rest("/search/node?q=role:#{chef_role}" )
         nodes_ats["rows"].each do |n|
           nodes_ats_fqdns <<  n.fqdn unless n.nil?
         end
