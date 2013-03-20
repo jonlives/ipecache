@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Ipecache : Ipecache is an extensible tool for purging URLs from Caches and CDNs." />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Ipecache</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/jonlives/ipecache">View on GitHub</a>
+
+          <h1 id="project_title">Ipecache</h1>
+          <h2 id="project_tagline">Ipecache is an extensible tool for purging URLs from Caches and CDNs.</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/jonlives/ipecache/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/jonlives/ipecache/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>Ipecache</h1>
+
+<p>Ipecache is an extensible tool for purging URLs from Caches and CDNs.</p>
+
+<h2>Installation</h2>
+
+<h3>Gem Install (recommended)</h3>
+
+<p><code>ipecache</code> is available on rubygems. Add the following to your <code>Gemfile</code>:</p>
+
+<div class="highlight"><pre><span class="n">gem</span> <span class="s1">'ipecache'</span>
+</pre></div>
+
+<p>or install the gem manually:</p>
+
+<div class="highlight"><pre>gem install ipecache
+</pre></div>
+
+<h2>Ipecache Configuration</h2>
+
+<p>Ipecache will not work with no configuration, so before you can purge anything, you'll need to specify some configuration for the plugins you wish to use.</p>
+
+<p>Ipecache will look for a configuration file in the following locations, in ascending order of precedence:</p>
+
+<ul>
+<li><code>/etc/ipecache-config.yml</code></li>
+<li><code>~/.ipecache/ipecache-config.yml</code></li>
+</ul><p>Anything set in the configuration file in your home directory for example, will override options set in <code>/etc</code>.</p>
+
+<p>Below is a sample config file with all supported options and all shipped plugins enabled below, followed by an explanation of each section.</p>
+
+<p>Please note, if you do not want to use a particular plugin, don't specify any configuration for it and it will automatically be disabled.</p>
+
+<div class="highlight"><pre><span class="l-Scalar-Plain">plugins</span><span class="p-Indicator">:</span>
+  <span class="l-Scalar-Plain">atschef</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">knife_config</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">/my/.chef/knife.rb</span>
+    <span class="l-Scalar-Plain">chef_role</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">ATSRole</span>
+  <span class="l-Scalar-Plain">fastly</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">api_key</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">abc123abc123abc123abc123abc123abc123</span>
+  <span class="l-Scalar-Plain">edgecast</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">account_id</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">1A2B</span>
+    <span class="l-Scalar-Plain">api_key</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">abc123</span>
+  <span class="l-Scalar-Plain">akamai</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">username</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">myusername</span>
+    <span class="l-Scalar-Plain">password</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">mypassword</span>
+</pre></div>
+
+<h4>atschef</h4>
+
+<p>For more information on how to configure the ATS/Chef plugin, please read the <a href="plugins/ATSChef.md">plugins/ATSChef.md</a> file.</p>
+
+<h4>Fastly</h4>
+
+<p>For more information on how to configure the Fastly CDN plugin, please read the <a href="plugins/Fastly.md">plugins/Fastly.md</a> file.</p>
+
+<h4>Edgecast</h4>
+
+<p>For more information on how to configure the Edgecast CDN plugin, please read the <a href="plugins/Edgecast.md">plugins/Edgecast.md</a> file.</p>
+
+<h4>Akamai</h4>
+
+<p>For more information on how to configure the Akamai plugin, please read the <a href="plugins/Akamai.md">plugins/Akamai.md</a> file.</p>
+
+<h2>Ipecache Usage</h2>
+
+<p>The main component of Ipecache, and the program which initialises and calls all plugins is called <code>ipecache</code>.</p>
+
+<h4>Usage</h4>
+
+<div class="highlight"><pre>ipecache <span class="o">[</span>-f -u -c -p --status<span class="o">]</span>
+</pre></div>
+
+<ul>
+<li>
+<p>Mandatory Parameters (you must specify one or the other)</p>
+
+<ul>
+<li>-f: Specifies a file containg a newline seperated list of URLS to purge</li>
+<li>-u: Specifies a single URL to purge</li>
+</ul>
+</li>
+<li>
+<p>Optional Parameters:</p>
+
+<ul>
+<li>--status: Prints the status of all ipecache plugins</li>
+<li>-c: Indicates that only CDN plugins should be run</li>
+<li>-p: Indicates that only local proxy plugins should be run.</li>
+</ul>
+</li>
+</ul><h4>Example (Checking plugin status)</h4>
+
+<div class="highlight"><pre>$&gt; ipecache --status
+Ipecache Status:
+
+Ipecache::Plugins::Akamai: enabled
+Ipecache::Plugins::ATSChef: enabled
+Ipecache::Plugins::Edgecast: enabled
+Ipecache::Plugins::Fastly: enabled
+</pre></div>
+
+<h4>Example (Purging a single URL from local proxies only)</h4>
+
+<div class="highlight"><pre>$&gt; ipecache -u https://img3.etsystatic.com/000/0/5241384/il_340x270.220445599.jpg -p
+
+Running plugins registered for Proxy Purge...
+
+
+Ipecache::Plugins::ATSChef: Beginning URL Purge from ATS...
+Ipecache::Plugins::ATSChef: Finding ATS Servers...
+Ipecache::Plugins::ATSChef: Purging https://img.mydomain.com/image9.jpg
+Ipecache::Plugins::ATSChef: --Purge from cache1.mydomain.com not needed, asset not found
+Ipecache::Plugins::ATSChef: --Purged from cache2.mydomain.com sucessfully
+
+All done!
+</pre></div>
+
+<h4>Example (Purging a file containing 2 URLs from CDNS only)</h4>
+
+<div class="highlight"><pre>$&gt;  ipecache -f ~/urlfile -c
+
+   Running plugins registered for CDN Purge...
+
+
+   Ipecache::Plugins::Akamai: Beginning URL Purge from Akamai...
+   Ipecache::Plugins::Akamai: Purging https://img.mydomain.com/image9.jpg
+   Ipecache::Plugins::Akamai: Purge successful!
+   Ipecache::Plugins::Akamai: Purging https://img.mydomain.com/image10.jpg
+   Ipecache::Plugins::Akamai: Purge successful!
+
+   Ipecache::Plugins::Edgecast: Beginning URL Purge from Edgecast...
+   Ipecache::Plugins::Edgecast: Purging https://img.mydomain.com/image9.jpg
+   Ipecache::Plugins::Edgecast: Purge successful!
+   Ipecache::Plugins::Edgecast: Purging https://img.mydomain.com/image10.jpg
+   Ipecache::Plugins::Edgecast: Purge successful!
+
+   Ipecache::Plugins::Fastly: Beginning URL Purge from Fastly...
+   Ipecache::Plugins::Fastly: Purging https://img.mydomain.com/image9.jpg
+   Ipecache::Plugins::Fastly: Purge successful!
+   Ipecache::Plugins::Fastly: Purging https://img.mydomain.com/imag10.jpg
+   Ipecache::Plugins::Fastly: Purge successful!
+
+   All done!
+</pre></div>
+
+<h4>Example (Purging a file containing 2 URLs from proxies and CDNS)</h4>
+
+<div class="highlight"><pre>$&gt;  ipecache -f ~/urlfile
+
+   Running plugins registered for Proxy Purge...
+
+
+   Ipecache::Plugins::ATSChef: Beginning URL Purge from ATS...
+   Ipecache::Plugins::ATSChef: Finding ATS Servers...
+   Ipecache::Plugins::ATSChef: Purging https://img.mydomain.com/image9.jpg
+   Ipecache::Plugins::ATSChef: --Purge from cache1.mydomain.com not needed, asset not found
+   Ipecache::Plugins::ATSChef: --Purged from cache2.mydomain.com sucessfully
+   Ipecache::Plugins::ATSChef: Purging https://img.mydomain.com/image10.jpg
+   Ipecache::Plugins::ATSChef: --Purge from cache1.mydomain.com not needed, asset not found
+   Ipecache::Plugins::ATSChef: --Purged from cache2.mydomain.com sucessfully
+
+   Running plugins registered for CDN Purge...
+
+
+   Ipecache::Plugins::Akamai: Beginning URL Purge from Akamai...
+   Ipecache::Plugins::Akamai: Purging https://img.mydomain.com/image9.jpg
+   Ipecache::Plugins::Akamai: Purge successful!
+   Ipecache::Plugins::Akamai: Purging https://img.mydomain.com/image10.jpg
+   Ipecache::Plugins::Akamai: Purge successful!
+
+   Ipecache::Plugins::Edgecast: Beginning URL Purge from Edgecast...
+   Ipecache::Plugins::Edgecast: Purging https://img.mydomain.com/image9.jpg
+   Ipecache::Plugins::Edgecast: Purge successful!
+   Ipecache::Plugins::Edgecast: Purging https://img.mydomain.com/image10.jpg
+   Ipecache::Plugins::Edgecast: Purge successful!
+
+   Ipecache::Plugins::Fastly: Beginning URL Purge from Fastly...
+   Ipecache::Plugins::Fastly: Purging https://img.mydomain.com/image9.jpg
+   Ipecache::Plugins::Fastly: Purge successful!
+   Ipecache::Plugins::Fastly: Purging https://img.mydomain.com/imag10.jpg
+   Ipecache::Plugins::Fastly: Purge successful!
+
+   All done!
+</pre></div>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Ipecache maintained by <a href="https://github.com/jonlives">jonlives</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
