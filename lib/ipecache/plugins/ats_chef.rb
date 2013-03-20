@@ -23,15 +23,14 @@ module Ipecache
           exit 1
         end
 
-        plugin_puts "Using knife config: #{knife_file}"
+        puts ""
+        plugin_puts "Beginning URL Purge from ATS..."
         plugin_puts "Finding ATS Servers..."
         nodes_ats_fqdns = []
         nodes_ats = rest_api.get_rest("/search/node?q=role:ATSImgCache" )
         nodes_ats["rows"].each do |n|
           nodes_ats_fqdns <<  n.fqdn unless n.nil?
         end
-
-        plugin_puts "Beginning URL Purge from ATS..."
 
         urls.each do |u|
           url = u.chomp

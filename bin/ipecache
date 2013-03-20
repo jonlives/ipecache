@@ -79,3 +79,6 @@ if !Choice.choices[:proxyonly]
   puts ""
   run_plugins(:cdn_purge)
 end
+
+puts ""
+puts "All done!"

@@ -3,7 +3,7 @@ require 'net/http'
 
 module Ipecache
   module Plugins
-    class CDNFastly < Plugin
+    class Fastly < Plugin
       name :fastly
       hooks :cdn_purge
 
@@ -17,12 +17,12 @@ module Ipecache
           exit 1
         end
 
-        plugin_puts "Using api key #{api_key}"
+        puts ""
         plugin_puts "Beginning URL Purge from Fastly..."
 
         urls.each do |u|
-
           url = u.chomp
+          plugin_puts ("Purging #{url}")
           hostname = URI.parse(url).host
           path = URI.parse(url).path
 

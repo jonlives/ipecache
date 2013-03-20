@@ -24,8 +24,7 @@ module Ipecache
           exit 1
         end
 
-        plugin_puts "Using account id #{account_id}"
-        plugin_puts "Using api key #{api_key}"
+        puts ""
         plugin_puts "Beginning URL Purge from Edgecast..."
 
         urls.each do |u|
