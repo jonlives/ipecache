@@ -67,7 +67,7 @@ The main component of Ipecache, and the program which initialises and calls all 
 
 #### Usage
 ```bash
-ipecache [-f -u -c -p --status]
+ipecache [-f -u -c -p -l --status]
 ```
 
 * Mandatory Parameters (you must specify one or the other)
@@ -78,6 +78,7 @@ ipecache [-f -u -c -p --status]
     * --status: Prints the status of all ipecache plugins
     * -c: Indicates that only CDN plugins should be run
     * -p: Indicates that only local proxy plugins should be run.
+    * -l: Specify a file to log errors to
 
 
 #### Example (Checking plugin status)
