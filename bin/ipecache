@@ -40,6 +40,12 @@ Choice.options do
     long  '--cdn-only'
     desc  'Only purge from CDNs'
   end
+
+  option :log_file, :required => false do
+    short '-l'
+    long  '--log-file'
+    desc  'Log errors to specified file in addition to stdout'
+  end
 end
 
 if Choice.choices[:status]
@@ -64,6 +70,10 @@ elsif  Choice.choices[:urlfile]
   end
 else
   Choice.help
+end
+
+if Choice.choices[:log_file]
+  @log_file = Choice.choices[:log_file]
 end
 
 if !Choice.choices[:cdnonly]

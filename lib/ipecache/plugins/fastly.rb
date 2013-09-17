@@ -41,8 +41,8 @@ module Ipecache
           response = http.request(request)
 
           if response.code.to_i != 200
-            plugin_puts "Response Code: #{response.code}"
-            plugin_puts response.body
+            plugin_puts_error(url,"Response Code: #{response.code}")
+            plugin_puts_error(url,response.body)
             exit 1
           else
             plugin_puts "Purge successful!"

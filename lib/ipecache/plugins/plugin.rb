@@ -39,11 +39,22 @@ module Ipecache
         @options[:urls]
       end
 
+      def log_file
+        @options[:log_file]
+      end
+
       def name
         self.class.to_s
       end
 
       def plugin_puts(message)
+        puts "#{name}: #{message}"
+      end
+
+      def plugin_puts_error(url,message)
+        if log_file
+          File.open(log_file, 'a') { |file| file.write("#{Time.now.getutc} #{url} #{name}: #{message}\n") }
+        end
         puts "#{name}: #{message}"
       end
 

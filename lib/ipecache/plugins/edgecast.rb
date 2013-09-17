@@ -46,8 +46,8 @@ module Ipecache
           response = connection.put("/v2/mcc/customers/#{account_id}/edge/purge",{ :MediaPath => url, :MediaType => 8})
 
           if response.status != 200
-            plugin_puts "Response Code: #{response.status}"
-            plugin_puts response.body
+            plugin_puts_error(url,"Response Code: #{response.status}")
+            plugin_puts_error(url,response.body)
             exit 1
           else
             plugin_puts "Purge successful!"

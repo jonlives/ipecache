@@ -53,7 +53,7 @@ module Ipecache
                                                               </soap:Envelope>")
           response_hash = response.to_hash
           if response_hash[:purge_request_response][:return][:result_msg] != "Success."
-            plugin_puts "An Error occured: #{response_hash[:purge_request_response][:return][:result_msg]}"
+            plugin_puts_error(url,"An Error occured: #{response_hash[:purge_request_response][:return][:result_msg]}")
             exit 1
           else
             plugin_puts "Purge successful!"

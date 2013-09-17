@@ -50,7 +50,7 @@ module Ipecache
             elsif result.include?("404")
               plugin_puts "--Purge from #{ats} not needed, asset not found"
             else
-              plugin_puts "--Purge from #{ats} failed"
+              plugin_puts_error(url,"--Purge from #{ats} failed")
             end
 
           end

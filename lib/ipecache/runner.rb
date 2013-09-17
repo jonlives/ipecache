@@ -24,10 +24,12 @@ module Ipecache
 
       def run_plugins(hook)
         urls = @urls
+        log_file = @log_file
         Ipecache::Plugins.run(
           :config => ipecache_config,
           :hook => hook.to_sym,
-          :urls => urls
+          :urls => urls,
+          :log_file => log_file
         )
       end
 

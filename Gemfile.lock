@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ipecache (0.0.1)
+    ipecache (0.0.3)
       app_conf (>= 0.4.0)
       choice (>= 0.1.6)
       faraday_middleware (>= 0.9.0)
@@ -25,7 +25,7 @@ GEM
     httpi (2.0.2)
       rack
     multipart-post (1.2.0)
-    nokogiri (1.5.6)
+    nokogiri (1.5.9)
     nori (2.0.4)
     rack (1.4.1)
     savon (2.1.0)
