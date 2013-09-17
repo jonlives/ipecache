@@ -43,6 +43,10 @@ module Ipecache
         @options[:log_file]
       end
 
+      def continue_on_error
+        @options[:continue_on_error]
+      end
+
       def name
         self.class.to_s
       end

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ipecache (0.0.3)
+    ipecache (0.0.4)
       app_conf (>= 0.4.0)
       choice (>= 0.1.6)
       faraday_middleware (>= 0.9.0)

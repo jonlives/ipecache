@@ -79,6 +79,7 @@ ipecache [-f -u -c -p -l --status]
     * -c: Indicates that only CDN plugins should be run
     * -p: Indicates that only local proxy plugins should be run.
     * -l: Specify a file to log errors to
+    * --nofail: Do not quit on error, continue purging
 
 
 #### Example (Checking plugin status)

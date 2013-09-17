@@ -43,7 +43,7 @@ module Ipecache
           if response.code.to_i != 200
             plugin_puts_error(url,"Response Code: #{response.code}")
             plugin_puts_error(url,response.body)
-            exit 1
+            exit 1 unless continue_on_error
           else
             plugin_puts "Purge successful!"
           end

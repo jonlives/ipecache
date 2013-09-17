@@ -54,7 +54,7 @@ module Ipecache
           response_hash = response.to_hash
           if response_hash[:purge_request_response][:return][:result_msg] != "Success."
             plugin_puts_error(url,"An Error occured: #{response_hash[:purge_request_response][:return][:result_msg]}")
-            exit 1
+            exit 1 unless continue_on_error
           else
             plugin_puts "Purge successful!"
           end

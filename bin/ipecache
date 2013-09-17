@@ -46,6 +46,11 @@ Choice.options do
     long  '--log-file'
     desc  'Log errors to specified file in addition to stdout'
   end
+
+  option :continue_on_error, :required => false do
+     long  '--nofail'
+     desc  'Continue on errors instead of exiting'
+   end
 end
 
 if Choice.choices[:status]
@@ -74,6 +79,10 @@ end
 
 if Choice.choices[:log_file]
   @log_file = Choice.choices[:log_file]
+end
+
+if Choice.choices[:continue_on_error]
+  @continue_on_error = Choice.choices[:continue_on_error]
 end
 
 if !Choice.choices[:cdnonly]

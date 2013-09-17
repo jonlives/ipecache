@@ -25,11 +25,13 @@ module Ipecache
       def run_plugins(hook)
         urls = @urls
         log_file = @log_file
+        continue_on_error = @continue_on_error
         Ipecache::Plugins.run(
           :config => ipecache_config,
           :hook => hook.to_sym,
           :urls => urls,
-          :log_file => log_file
+          :log_file => log_file,
+          :continue_on_error => continue_on_error
         )
       end
 
