@@ -7,7 +7,8 @@ module Ipecache
       hooks :cdn_purge
 
       def perform
-        safe_require 'savon'
+        safe_require 'faraday_middleware'
+        safe_require 'json'
 
         username = config.username
         password = config.password
@@ -29,31 +30,27 @@ module Ipecache
           url = u.chomp
           plugin_puts ("Purging #{url}")
 
-          savon_client = Savon.client({log_level: :info, log: false, convert_request_keys_to: :none,  wsdl: 'https://ccuapi.akamai.com/ccuapi-axis.wsdl'})
-          response = savon_client.call(:purge_request, xml: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
-                                                             <soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
-                                                                  xmlns:soapenc=\"http://schemas.xmlsoap.org/soap/encoding/\"
-                                                                  xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
-                                                                  soap:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
-                                                                  xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">
-                                                                  <soap:Body>
-                                                                      <purgeRequest xmlns=\"http://ccuapi.akamai.com/purge\">
-                                                                          <name xsi:type=\"xsd:string\">#{username}</name>
-                                                                          <pwd xsi:type=\"xsd:string\">#{password}</pwd>
-                                                                          <network xsi:type=\"xsd:string\"></network>
-                                                                          <opt soapenc:arrayType=\"xsd:string[2]\" xsi:type=\"soapenc:Array\">
-                                                                              <item xsi:type=\"xsd:string\">type=arl</item>
-                                                                              <item xsi:type=\"xsd:string\">action=remove</item>
-                                                                          </opt>'
-                                                                          <uri soapenc:arrayType=\"xsd:string[1]\" xsi:type=\"soapenc:Array\">
-                                                                            <item xsi:type=\"xsd:string\">#{url}</item>
-                                                                          </uri>
-                                                                      </purgeRequest>
-                                                                  </soap:Body>
-                                                              </soap:Envelope>")
-          response_hash = response.to_hash
-          if response_hash[:purge_request_response][:return][:result_msg] != "Success."
-            plugin_puts_error(url,"An Error occured: #{response_hash[:purge_request_response][:return][:result_msg]}")
+          connection = Faraday::Connection.new(
+              {:url => "https://api.ccu.akamai.com",
+              :headers => { :accept =>  'application/json',
+                            :content_type =>  'application/json',
+                            :user_agent => 'Ipecache',
+                          },
+              :ssl => { :verify => true }
+              }) do |builder|
+            builder.request  :json
+            builder.basic_auth(username,password)
+            builder.adapter Faraday.default_adapter
+          end
+
+          response = connection.post("/ccu/v2/queues/default", "{\"objects\":[\"#{url}\"]}")
+
+          response_json = JSON.parse(response.body)
+          response_httpStatus = response_json['httpStatus']
+
+          if response_httpStatus != 201
+            plugin_puts_error(url,"Purge failed!")
+            plugin_puts response.body
             exit 1 unless continue_on_error
           else
             plugin_puts "Purge successful!"
