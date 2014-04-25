@@ -21,6 +21,9 @@ module Ipecache
       # hook. That will be fired when the hook is fired.
       def self.hook(the_hook)
         self.send(:define_method, the_hook.to_sym) do
+          if !quiet_mode
+            puts ""
+          end
           perform
         end
       end
@@ -47,19 +50,27 @@ module Ipecache
         @options[:continue_on_error]
       end
 
+      def quiet_mode
+        @options[:quiet_mode]
+      end
+
       def name
         self.class.to_s
       end
 
       def plugin_puts(message)
-        puts "#{name}: #{message}"
+        if !quiet_mode
+          puts "#{name}: #{message}"
+        end
       end
 
       def plugin_puts_error(url,message)
         if log_file
           File.open(log_file, 'a') { |file| file.write("#{Time.now.getutc} #{url} #{name}: #{message}\n") }
         end
-        puts "#{name}: #{message}"
+        if !quiet_mode
+          puts "#{name}: #{message}"
+        end
       end
 
       private

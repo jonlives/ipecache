@@ -51,6 +51,16 @@ Choice.options do
      long  '--nofail'
      desc  'Continue on errors instead of exiting'
    end
+
+  option :quiet_mode, :required => false do
+    short '-q'
+    long  '--quiet'
+    desc  'Suppress all console output'
+  end
+end
+
+if Choice.choices[:quiet_mode]
+  @quiet_mode = Choice.choices[:quiet_mode]
 end
 
 if Choice.choices[:status]
@@ -70,7 +80,9 @@ elsif  Choice.choices[:urlfile]
   if File.exists?(urlfile)
     @urls = File.open(urlfile, 'r').readlines
   else
-    puts "Error: #{urlfile} doesn't exist."
+    if !@quiet_mode
+      puts "Error: #{urlfile} doesn't exist."
+    end
     exit 1
   end
 else
@@ -86,18 +98,24 @@ if Choice.choices[:continue_on_error]
 end
 
 if !Choice.choices[:cdnonly]
-  puts ""
-  puts "Running plugins registered for Proxy Purge..."
-  puts ""
+  if !@quiet_mode
+    puts ""
+    puts "Running plugins registered for Proxy Purge..."
+    puts ""
+  end
   run_plugins(:proxy_purge)
 end
 
 if !Choice.choices[:proxyonly]
-  puts ""
-  puts "Running plugins registered for CDN Purge..."
-  puts ""
+  if !@quiet_mode
+    puts ""
+    puts "Running plugins registered for CDN Purge..."
+    puts ""
+  end
   run_plugins(:cdn_purge)
 end
 
-puts ""
-puts "All done!"
+if !@quiet_mode
+  puts ""
+  puts "All done!"
+end

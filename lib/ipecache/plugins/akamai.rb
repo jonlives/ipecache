@@ -23,7 +23,6 @@ module Ipecache
           exit 1
         end
 
-        puts ""
         plugin_puts "Beginning URL Purge from Akamai..."
 
         urls.each do |u|
