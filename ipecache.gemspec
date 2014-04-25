@@ -2,7 +2,7 @@ $:.push File.expand_path('../lib', __FILE__)
 
 Gem::Specification.new do |gem|
   gem.name          = 'ipecache'
-  gem.version       = '0.0.4'
+  gem.version       = '0.0.5'
   gem.authors       = ["Jon Cowie"]
   gem.email         = 'jonlives@gmail.com'
   gem.homepage      = 'https://github.com/jonlives/ipecache'
