@@ -29,7 +29,6 @@ module Ipecache
           exit 1
         end
 
-        puts ""
         plugin_puts "Beginning URL Purge from ATS..."
         plugin_puts "Finding ATS Servers..."
         nodes_ats_fqdns = []
