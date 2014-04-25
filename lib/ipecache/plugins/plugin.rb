@@ -59,7 +59,7 @@ module Ipecache
         if log_file
           File.open(log_file, 'a') { |file| file.write("#{Time.now.getutc} #{url} #{name}: #{message}\n") }
         end
-        puts "#{name}: #{message}"
+        puts "#{url} #{name}: #{message}"
       end
 
       private
