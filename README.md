@@ -45,6 +45,9 @@ plugins:
   akamai:
     username: myusername
     password: mypassword
+  cloudflare:
+    login: foo@bar.com
+    api_key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
 #### atschef
@@ -58,6 +61,9 @@ For more information on how to configure the Edgecast CDN plugin, please read th
 
 #### Akamai
 For more information on how to configure the Akamai plugin, please read the [plugins/Akamai.md](plugins/Akamai.md) file.
+
+#### CloudFlare
+For more information on how to configure the CloudFlare plugin, please read the [plugins/CloudFlare.md](plugins/CloudFlare.md) file.
 
 
 
