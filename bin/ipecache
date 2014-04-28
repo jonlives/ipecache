@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-# ipecache - A command line memcached traffic analyzer
+# ipecache - Extensible tool for purging URLs from Caches and CDNs.
 #
 # Author:: Jon Cowie (<jcowie@etsy.com>)
 
@@ -48,9 +48,10 @@ Choice.options do
   end
 
   option :continue_on_error, :required => false do
-     long  '--nofail'
-     desc  'Continue on errors instead of exiting'
-   end
+    short '-n'
+    long  '--nofail'
+    desc  'Continue on errors instead of exiting'
+  end
 end
 
 if Choice.choices[:status]
