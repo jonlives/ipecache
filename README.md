@@ -128,7 +128,7 @@ $>  ipecache -f ~/urlfile -c
 
    Ipecache::Plugins::Akamai: Beginning URL Purge from Akamai...
    Ipecache::Plugins::Akamai: Purging https://img.mydomain.com/image9.jpg
-   Ipecache::Plugins::Akamai: Purge successful!
+   Ipecache::Plugins::Akamai: Purge successful! [progressUri: https://api.ccu.akamai.com/ccu/v2/purges/xxxxxxxx-aaaa-1111-2222-bbbbbbbbbbbb]
    Ipecache::Plugins::Akamai: Purging https://img.mydomain.com/image10.jpg
    Ipecache::Plugins::Akamai: Purge successful!
 
@@ -169,9 +169,9 @@ $>  ipecache -f ~/urlfile
 
    Ipecache::Plugins::Akamai: Beginning URL Purge from Akamai...
    Ipecache::Plugins::Akamai: Purging https://img.mydomain.com/image9.jpg
-   Ipecache::Plugins::Akamai: Purge successful!
+   Ipecache::Plugins::Akamai: Purge successful! [progressUri: https://api.ccu.akamai.com/ccu/v2/purges/xxxxxxxx-aaaa-1111-2222-bbbbbbbbbbbb]
    Ipecache::Plugins::Akamai: Purging https://img.mydomain.com/image10.jpg
-   Ipecache::Plugins::Akamai: Purge successful!
+   Ipecache::Plugins::Akamai: Purge successful! [progressUri: https://api.ccu.akamai.com/ccu/v2/purges/xxxxxxxx-aaaa-1111-2222-bbbbbbbbbbbb]
 
    Ipecache::Plugins::Edgecast: Beginning URL Purge from Edgecast...
    Ipecache::Plugins::Edgecast: Purging https://img.mydomain.com/image9.jpg
