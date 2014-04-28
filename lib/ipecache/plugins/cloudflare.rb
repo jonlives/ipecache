@@ -57,7 +57,7 @@ module Ipecache
           response_result = response_json['result']
 
           if response_result != 'success'
-            plugin_puts_error (url,"Purge failed!")
+            plugin_puts_error(url,"Purge failed!")
             plugin_puts response.body
             exit 1 unless continue_on_error
           else
