@@ -2,7 +2,7 @@
 
 Features:
 
-    - Cloudflare plugin (Thanks to https://github.com/adedommelin)
+    - Cloudflare plugin (https://github.com/nespresso)
     - Add quiet mode  (Thanks to https://github.com/nespresso)
     - Add -n short option to --nofail (Thanks to https://github.com/nespresso)
 
@@ -14,7 +14,7 @@ Bugfixes:
 
 Features:
 
-    - Switched Akamai plugin to use new CCUAPI (Thanks to https://github.com/adedommelin)
+    - Switched Akamai plugin to use new CCUAPI (Thanks to https://github.com/nespresso)
 
 ## 0.0.1 (March 20, 2013)
 
