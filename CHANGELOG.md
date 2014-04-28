@@ -2,7 +2,7 @@
 
 Features:
 
-    - Cloudflare plugin (https://github.com/nespresso)
+    - Cloudflare plugin (Thanks to https://github.com/adedommelin)
     - Add quiet mode  (Thanks to https://github.com/nespresso)
     - Add -n short option to --nofail (Thanks to https://github.com/nespresso)
 
