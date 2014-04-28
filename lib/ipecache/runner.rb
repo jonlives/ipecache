@@ -26,12 +26,14 @@ module Ipecache
         urls = @urls
         log_file = @log_file
         continue_on_error = @continue_on_error
+        quiet_mode = @quiet_mode
         Ipecache::Plugins.run(
           :config => ipecache_config,
           :hook => hook.to_sym,
           :urls => urls,
           :log_file => log_file,
-          :continue_on_error => continue_on_error
+          :continue_on_error => continue_on_error,
+          :quiet_mode => quiet_mode
         )
       end
 
