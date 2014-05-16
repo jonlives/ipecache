@@ -11,8 +11,9 @@ Configuration
 ```yaml
 plugins:
   local:
-    hosts: - cache1.mydomain.com
-           - cache2.mydomain.com
+    hosts: 
+      - cache1.mydomain.com
+      - cache2.mydomain.com
     use_ssh: false
 ```
 
