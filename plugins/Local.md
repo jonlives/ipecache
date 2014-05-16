@@ -1,6 +1,6 @@
 Local
 ========
-Uses a defined set of Hosts from the config and purges the URL list from each Cache Server
+Uses a defined set of Hosts from the config and purges the URL list from each Cache Server e.g. Apache Traffic Server or Varnish Cache
 
 Hooks
 -----
