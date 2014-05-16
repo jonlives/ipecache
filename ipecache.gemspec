@@ -19,4 +19,5 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'choice', '>= 0.1.6'
   gem.add_runtime_dependency 'faraday_middleware', '>= 0.9.0'
   gem.add_runtime_dependency 'public_suffix', '>= 1.4.2'
+  gem.add_runtime_dependency 'akamai_edgegrid', '>= 1.0'
 end
