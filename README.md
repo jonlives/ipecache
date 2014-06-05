@@ -48,6 +48,9 @@ plugins:
   cloudflare:
     login: foo@bar.com
     api_key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  swisstxt_cdn:
+    username: myusername
+    password: mypassword
 ```
 
 #### atschef
@@ -64,6 +67,9 @@ For more information on how to configure the Akamai plugin, please read the [plu
 
 #### CloudFlare
 For more information on how to configure the CloudFlare plugin, please read the [plugins/CloudFlare.md](plugins/CloudFlare.md) file.
+
+#### SWISS TXT CDN
+For more information on how to configure the SWISS TXT CDN plugin, please read the [plugins/SwisstxtCdn.md](plugins/SwisstxtCdn.md) file.
 
 
 
