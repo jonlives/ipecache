@@ -17,18 +17,15 @@ module Ipecache
           plugin_puts ("Purging #{url}")
 
           begin
+            conn = connection
             unless host = URI.parse(url).host
               raise "Invalid URL: No host found in URL. Missing schema?"
             end
             path = URI.parse(url).path
-            response = connection.post('/purge', host: host, path: path)
+            response = conn.post('/purge', host: host, path: path)
           rescue => e
             plugin_puts_error(url, e.message)
-            if continue_on_error
-              next
-            else
-              exit 1
-            end
+            continue_on_error ? next : exit(1)
           end
 
           if response.status != 200
