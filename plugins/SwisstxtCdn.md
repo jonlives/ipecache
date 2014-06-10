@@ -12,7 +12,7 @@ Configuration
 plugins:
   swisstxt_cdn:
     api_key: sample_key_e8e55aff-61e3-4588-ab98-4d3ea58be7c8
-    api_secret: dglgg32cq2jztqtpr6coclyfk9bb0vjzt5kipvl2fkmv8n7aik
+    api_secret: xyz5678xyz5678xyz5678xyz5678xyz5678xyz5678xyz5678
 ```
 
 #### api_key

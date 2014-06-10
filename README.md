@@ -49,8 +49,8 @@ plugins:
     login: foo@bar.com
     api_key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
   swisstxt_cdn:
-    username: myusername
-    password: mypassword
+    api_key: sample_key_e8e55aff-61e3-4588-ab98-4d3ea58be7c8
+    api_secret: xyz5678xyz5678xyz5678xyz5678xyz5678xyz5678xyz5678
 ```
 
 #### atschef
