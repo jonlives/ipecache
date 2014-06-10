@@ -1,44 +1,23 @@
 PATH
   remote: .
   specs:
-    ipecache (0.0.4)
+    ipecache (0.0.6)
       app_conf (>= 0.4.0)
       choice (>= 0.1.6)
       faraday_middleware (>= 0.9.0)
-      savon (>= 2.1.0)
+      public_suffix (>= 1.4.2)
 
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
-    akami (1.2.0)
-      gyoku (>= 0.4.0)
-      nokogiri (>= 1.4.0)
-    app_conf (0.4.0)
-    builder (3.0.0)
+    app_conf (0.4.2)
     choice (0.1.6)
-    faraday (0.8.6)
-      multipart-post (~> 1.1)
-    faraday_middleware (0.9.0)
-      faraday (>= 0.7.4, < 0.9)
-    gyoku (1.0.0)
-      builder (>= 2.1.2)
-    httpi (2.0.2)
-      rack
-    multipart-post (1.2.0)
-    nokogiri (1.5.9)
-    nori (2.0.4)
-    rack (1.4.1)
-    savon (2.1.0)
-      akami (~> 1.2.0)
-      builder (>= 2.1.2)
-      gyoku (~> 1.0.0)
-      httpi (~> 2.0.2)
-      nokogiri (>= 1.4.0)
-      nori (~> 2.0.3)
-      wasabi (~> 3.0.0)
-    wasabi (3.0.0)
-      httpi (~> 2.0)
-      nokogiri (>= 1.4.0)
+    faraday (0.9.0)
+      multipart-post (>= 1.2, < 3)
+    faraday_middleware (0.9.1)
+      faraday (>= 0.7.4, < 0.10)
+    multipart-post (2.0.0)
+    public_suffix (1.4.2)
 
 PLATFORMS
   ruby
