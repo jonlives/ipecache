@@ -69,7 +69,7 @@ For more information on how to configure the Akamai plugin, please read the [plu
 For more information on how to configure the CloudFlare plugin, please read the [plugins/CloudFlare.md](plugins/CloudFlare.md) file.
 
 #### SWISS TXT CDN
-For more information on how to configure the SWISS TXT CDN plugin, please read the [plugins/SWISS_TXT_CDN.md](plugins/SwisstxtCdn.md) file.
+For more information on how to configure the SWISS TXT CDN plugin, please read the [plugins/SWISS_TXT_CDN.md](plugins/SWISS_TXT_CDN.md) file.
 
 
 
