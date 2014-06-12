@@ -26,6 +26,6 @@ This is the api_secret of the SWISS TXT CDN account you want to use
 - Type: `String`
 
 #### url (optional)
-The URL of the SWISS TXT CDN API. This parameter defaults to `https://api.cdn.swissttx.ch` and is not required.
+The URL of the SWISS TXT CDN API. This parameter defaults to `https://cdn-api.swissttx.ch` and is not required.
 
 - Type: `String`
