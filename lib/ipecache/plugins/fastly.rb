@@ -3,27 +3,21 @@ require 'net/http'
 
 module Ipecache
   module Plugins
-    class Swisstxtcdn < Plugin
-      name :swisstxtcdn
+    class Fastly < Plugin
+      name :fastly
       hooks :cdn_purge
 
       def perform
         safe_require 'uri'
 
-        user = config.user
-        password = config.password
+        api_key = config.api_key
 
-        if user.nil?
-          plugin_puts("SWISS TXT CDN API user not specified, Exiting...")
+        if api_key.nil?
+          plugin_puts("Fastly API key not specified, Exiting...")
           exit 1
         end
 
-        if password.nil?
-          plugin_puts("SWISS TXT CDN API password not specified, Exiting...")
-          exit 1
-        end
-
-        plugin_puts "Beginning URL Purge from SWISS TXT CDN..."
+        plugin_puts "Beginning URL Purge from Fastly..."
 
         urls.each do |u|
           url = u.chomp
