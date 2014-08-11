@@ -21,6 +21,6 @@ This is the username of the Akamai account you want to use
 - Type: `String`
 
 #### password
-This is the username of the Akamai account you want to use
+This is the password of the Akamai account you want to use
 
 - Type: `String`
