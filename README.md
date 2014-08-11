@@ -48,6 +48,11 @@ plugins:
   cloudflare:
     login: foo@bar.com
     api_key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  local:
+    hosts: 
+      - cache1.mydomain.com
+      - cache2.mydomain.com
+    use_ssh: false
 ```
 
 #### atschef
@@ -65,6 +70,8 @@ For more information on how to configure the Akamai plugin, please read the [plu
 #### CloudFlare
 For more information on how to configure the CloudFlare plugin, please read the [plugins/CloudFlare.md](plugins/CloudFlare.md) file.
 
+#### Local
+For more information on how to configure the Local plugin, please read the [plugins/Local.md](plugins/Local.md) file.
 
 
 Ipecache Usage
@@ -99,6 +106,7 @@ Ipecache::Plugins::Akamai: enabled
 Ipecache::Plugins::ATSChef: enabled
 Ipecache::Plugins::Edgecast: enabled
 Ipecache::Plugins::Fastly: enabled
+Ipecache::Plugins::Local: enabled
 ```
 
 #### Example (Purging a single URL from local proxies only)
