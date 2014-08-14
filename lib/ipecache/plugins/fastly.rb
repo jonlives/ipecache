@@ -27,6 +27,7 @@ module Ipecache
 
           http = Net::HTTP.new("api.fastly.com", "443")
           http.use_ssl = true
+          http.ssl_version = 'SSLv3'
           http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
           request = Net::HTTP::Purge.new(path)

@@ -1,3 +1,9 @@
+## 0.0.8 (August 14th, 2014)
+
+Features:
+
+    - Fix to Fastly plugin for https://github.com/jonlives/ipecache/issues/10
+
 ## 0.0.7 (August 14th, 2014)
 
 Features:
