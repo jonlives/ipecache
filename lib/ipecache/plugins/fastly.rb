@@ -34,7 +34,7 @@ module Ipecache
           # as the hostname is changed to the URL being purged after
           # SSL handshake.
           http.ssl_version = 'SSLv3'
-          http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+          http.verify_mode = OpenSSL::SSL::VERIFY_PEER
 
           request = Net::HTTP::Purge.new(path)
           request.add_field("X-Forwarded-For", "0.0.0.0")
