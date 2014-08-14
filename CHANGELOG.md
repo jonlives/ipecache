@@ -1,3 +1,10 @@
+## 0.0.7 (July nth, 2014)
+
+Features:
+
+    - Local plugin (Thanks to https://github.com/jmara)
+    - SWISSTXT plugin (Thanks to https://github.com/niwo)
+    
 ## 0.0.6 (April 28, 2014)
 
 Features:
