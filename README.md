@@ -48,17 +48,14 @@ plugins:
   cloudflare:
     login: foo@bar.com
     api_key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-<<<<<<< HEAD
   local:
     hosts: 
       - cache1.mydomain.com
       - cache2.mydomain.com
     use_ssh: false
-=======
   swisstxt_cdn:
     api_key: sample_key_e8e55aff-61e3-4588-ab98-4d3ea58be7c8
     api_secret: xyz5678xyz5678xyz5678xyz5678xyz5678xyz5678xyz5678
->>>>>>> swisstxt-master
 ```
 
 #### atschef
