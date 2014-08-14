@@ -1,4 +1,4 @@
-## 0.0.7 (July nth, 2014)
+## 0.0.7 (August 14th, 2014)
 
 Features:
 
