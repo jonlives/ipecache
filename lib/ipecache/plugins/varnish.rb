@@ -12,6 +12,7 @@ module Ipecache
         hosts = config.hosts
         use_ssh = config.use_ssh
         action = (config.action.upcase == PURGE) ? "PURGE" : "BAN"
+        key = config.auth_key
 
         if !hosts
           plugin_puts "No hosts in config file specified. Exiting..."
@@ -29,9 +30,9 @@ module Ipecache
             hostname = URI.parse(url).host
             path = URI.parse(url).path
             if use_ssh
-              result = `ssh #{varnish} 'curl -X #{action} -s -o /dev/null -w \"%{http_code}\" --header \"Host: #{hostname}\" \"http://localhost#{path}\"'`
+              result = `ssh #{varnish} 'curl -X #{action} -s -o /dev/null -w \"%{http_code}\" --header \"X-BAN-Auth: #{key}\" --header \"Host: #{hostname}\" \"http://localhost#{path}\"'`
             else
-              result = `curl -X #{action} -s -o /dev/null -w "%{http_code}" --header "Host: #{hostname}" "http://#{varnish}#{path}"`
+              result = `curl -X #{action} -s -o /dev/null -w "%{http_code}" --header \"X-BAN-Auth: #{key}\" --header "Host: #{hostname}" "http://#{varnish}#{path}"`
             end
             if result.include?("200")
               plugin_puts "--Purged from #{varnish} sucessfully"
