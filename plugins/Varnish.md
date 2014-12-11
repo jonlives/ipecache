@@ -17,6 +17,7 @@ plugins:
       - cache2.mydomain.com
     use_ssh: false
     action: ban
+    auth_key: <authapikey>
 ```
 
 #### hosts
@@ -31,5 +32,10 @@ This enables a SSH-Wrapper to run the purge request locally on the Cache Server
 
 #### action
 This defines whether use BAN or PURGE
+
+- Type: `String`
+
+### auth_key
+This defines the authorization key sent in the headers with the request
 
 - Type: `String`
