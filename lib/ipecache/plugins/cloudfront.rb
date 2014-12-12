@@ -14,6 +14,7 @@ module Ipecache
         secret_access_key = config.secret_access_key
         region = config.region
         distributions = config.distributions
+        batch_size = config.batch_size || 3000
 
         if access_key_id.nil?
           plugin_puts "Cloudfront access id not specified, Exiting..."
@@ -44,7 +45,7 @@ module Ipecache
         )
         cf = AWS::CloudFront.new()
 
-        urls.each_slice(3000) do |u|
+        urls.each_slice(batch_size) do |u|
           paths = []
           u.each { |x| paths << URI.parse(x).path}
           distributions.each do |distri|

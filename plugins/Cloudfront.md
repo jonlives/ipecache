@@ -13,6 +13,8 @@ plugins:
   cloudfront:
     access_key_id: yyyyyyyyyyyyyyyy
     secret_access_key: xxxxxxxxxxxxxxxxxx
+    region: eu-west-1
+    batch_size: 3000
     distributions:
         - distribution1
         - distribution2
@@ -32,3 +34,13 @@ This is your aws access key
 This is a list of CF distributions
 
 - Type `Array`
+
+### region
+This is the AWS region of your CF distributions
+
+- Type `String`
+
+### batch_size
+This is the number of items to be included for each invalidation request, default to 3000 (aws max limit)
+
+- Type `Integer`
