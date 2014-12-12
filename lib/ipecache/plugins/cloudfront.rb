@@ -7,11 +7,12 @@ module Ipecache
       hooks :cdn_purge
 
       def perform
-        safe_require 'aws-sdk'
+        safe_require 'aws-sdk-v1'
         safe_require 'uri'
 
         access_key_id = config.access_key_id
         secret_access_key = config.secret_access_key
+        region = config.region
         distributions = config.distributions
 
         if access_key_id.nil?
@@ -29,29 +30,38 @@ module Ipecache
           exit 1
         end
 
+        if region.nil?
+          plugin_puts "Cloudfront region not specified, Exiting..."
+          exit 1
+        end
+
         plugin_puts "Beginning URL Purge from CloudFront..."
 
-        cf = AWS::CloudFront.new(
+        AWS.config(
         :access_key_id => access_key_id,
-        :secret_access_key => secret_access_key)
+        :secret_access_key => secret_access_key,
+        :region => region
+        )
+        cf = AWS::CloudFront.new()
 
-        urls.each do |u|
-          url = u.chomp
+        urls.each_slice(3000) do |u|
+          paths = []
+          u.each { |x| paths << URI.parse(x).path}
           distributions.each do |distri|
-            plugin_puts "Purging #{url} on #{distri}"
-            uri = URI.parse(url)
+            plugin_puts "Purging #{u.length} items from #{distri}"
             result = cf.client.create_invalidation(
               :distribution_id => distri,
               :invalidation_batch => {
                 :paths => {
-                  :quantity => 1,
-                  :items => Array(uri)
+                  :quantity => paths.length,
+                  :items => paths
                 },
                 :caller_reference => "Ipecache_#{Time.now}"
               }
             )
-            plugin_puts result[:status]
+            plugin_puts "#{result[:id]}: #{result[:status]}, #{result[:invalidation_batch][:paths][:items].length} item(s)"
           end
+          plugin_puts "This invalidation costs #{paths.length*0.005} Euro"
         end
       end
     end
