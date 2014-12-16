@@ -56,6 +56,14 @@ plugins:
   swisstxt_cdn:
     api_key: sample_key_e8e55aff-61e3-4588-ab98-4d3ea58be7c8
     api_secret: xyz5678xyz5678xyz5678xyz5678xyz5678xyz5678xyz5678
+  cloudfront:
+    access_key_id: yyyyyyyyyyyyyyyy
+    secret_access_key: xxxxxxxxxxxxxxxxxx
+    region: eu-west-1
+    batch_size: 3000
+    distributions:
+      - distribution1
+      - distribution2
 ```
 
 #### atschef
@@ -79,6 +87,8 @@ For more information on how to configure the Local plugin, please read the [plug
 #### SWISS TXT CDN
 For more information on how to configure the SWISS TXT CDN plugin, please read the [plugins/SWISS_TXT_CDN.md](plugins/SWISS_TXT_CDN.md) file.
 
+#### Amazon Cloudfront
+For more information on how to configure the Amazon Cloudfront CDN plugin, please read the [plugins/Cloudfront.md](plugins/Cloudfront.md) file.
 
 Ipecache Usage
 -----------

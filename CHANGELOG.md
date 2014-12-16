@@ -1,3 +1,9 @@
+## 0.0.9 (December 16th, 2014)
+
+Features:
+
+    - Cloudfront plugin (Thanks to https://github.com/danieleva)
+
 ## 0.0.8 (August 14th, 2014)
 
 Features:
