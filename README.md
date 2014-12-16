@@ -87,6 +87,8 @@ For more information on how to configure the Local plugin, please read the [plug
 #### SWISS TXT CDN
 For more information on how to configure the SWISS TXT CDN plugin, please read the [plugins/SWISS_TXT_CDN.md](plugins/SWISS_TXT_CDN.md) file.
 
+#### Amazon Cloudfront
+For more information on how to configure the Amazon Cloudfront CDN plugin, please read the [plugins/Cloudfront.md](plugins/Cloudfront.md) file.
 
 Ipecache Usage
 -----------
