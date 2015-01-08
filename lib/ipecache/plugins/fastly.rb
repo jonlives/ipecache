@@ -28,11 +28,6 @@ module Ipecache
           http = Net::HTTP.new(uri.host, uri.port)
           http.use_ssl = true
 
-          # Fix for https://github.com/jonlives/ipecache/issues/10
-          # We're using SSL v3 here to disable SNI,
-          # which causes Fastly's API to return a 400
-          # as the hostname is changed to the URL being purged after
-          # SSL handshake.
           http.verify_mode = OpenSSL::SSL::VERIFY_PEER
 
           request = Net::HTTP::Post.new(uri.request_uri)
