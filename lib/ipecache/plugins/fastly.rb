@@ -22,10 +22,10 @@ module Ipecache
         urls.each do |u|
           url = u.chomp
           plugin_puts ("Purging #{url}")
-          hostname = URI.parse(url).host
-          path = URI.parse(url).path
 
-          http = Net::HTTP.new("api.fastly.com", "443")
+          uri = URI.parse("https://api.fastly.com/purge/#{url}")
+
+          http = Net::HTTP.new(uri.host, uri.port)
           http.use_ssl = true
 
           # Fix for https://github.com/jonlives/ipecache/issues/10
@@ -33,16 +33,12 @@ module Ipecache
           # which causes Fastly's API to return a 400
           # as the hostname is changed to the URL being purged after
           # SSL handshake.
-          http.ssl_version = 'SSLv3'
           http.verify_mode = OpenSSL::SSL::VERIFY_PEER
 
-          request = Net::HTTP::Purge.new(path)
-          request.add_field("X-Forwarded-For", "0.0.0.0")
+          request = Net::HTTP::Post.new(uri.request_uri)
           request.add_field("Accept", "application/json")
           request.add_field("User-Agent", "Ipecache")
-          request.add_field("Content-Type", "application/x-www-form-urlencoded")
-          request.add_field("X-Fastly-Key", api_key)
-          request.add_field("Host", hostname)
+          request.add_field("Fastly-Key", api_key)
 
           response = http.request(request)
 
