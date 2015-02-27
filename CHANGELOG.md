@@ -1,3 +1,10 @@
+## 0.0.10 (January 8th, 2015)
+
+Bugfixes:
+
+    - Fix Fastly plugin to work without SSLv3, due to it being deprecated as a result of the POODLE vulnerability (Re-fixing https://github.com/jonlives/ipecache/issues/10)
+
+
 ## 0.0.9 (December 16th, 2014)
 
 Features:
