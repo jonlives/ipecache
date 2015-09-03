@@ -2,7 +2,7 @@ $:.push File.expand_path('../lib', __FILE__)
 
 Gem::Specification.new do |gem|
   gem.name          = 'ipecache'
-  gem.version       = '0.0.10'
+  gem.version       = '0.0.11'
   gem.authors       = ["Jon Cowie"]
   gem.email         = 'jonlives@gmail.com'
   gem.homepage      = 'https://github.com/jonlives/ipecache'
@@ -20,4 +20,5 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'faraday_middleware', '>= 0.9.0'
   gem.add_runtime_dependency 'public_suffix', '>= 1.4.2'
   gem.add_runtime_dependency 'aws-sdk-v1', '>= 1.0'
+  gem.add_runtime_dependency 'maxcdn', '>= 0.2.1'
 end

@@ -42,6 +42,11 @@ plugins:
   edgecast:
     account_id: 1A2B
     api_key: abc123
+  maxcdn:
+    alias: myalias
+    token: 1A2B
+    secret: abc123
+    zone: 1234
   akamai:
     username: myusername
     password: mypassword
@@ -49,7 +54,7 @@ plugins:
     login: foo@bar.com
     api_key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
   local:
-    hosts: 
+    hosts:
       - cache1.mydomain.com
       - cache2.mydomain.com
     use_ssh: false
