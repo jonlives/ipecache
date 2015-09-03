@@ -16,8 +16,3 @@ plugins:
      secret: abc123
      zone: 1234
 ```
-
-#### api_key
-This is your fastly API key
-
-- Type: `String`
