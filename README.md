@@ -95,6 +95,9 @@ For more information on how to configure the SWISS TXT CDN plugin, please read t
 #### Amazon Cloudfront
 For more information on how to configure the Amazon Cloudfront CDN plugin, please read the [plugins/Cloudfront.md](plugins/Cloudfront.md) file.
 
+#### MaxCDN
+For more information on how to configure the MaxCDN plugin, please read the [plugins/MaxCDN.md](plugins/MaxCDN.md) file.
+
 Ipecache Usage
 -----------
 The main component of Ipecache, and the program which initialises and calls all plugins is called `ipecache`.
