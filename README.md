@@ -42,6 +42,11 @@ plugins:
   edgecast:
     account_id: 1A2B
     api_key: abc123
+  maxcdn:
+    alias: myalias
+    token: 1A2B
+    secret: abc123
+    zone: 1234
   akamai:
     username: myusername
     password: mypassword
@@ -49,7 +54,7 @@ plugins:
     login: foo@bar.com
     api_key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
   local:
-    hosts: 
+    hosts:
       - cache1.mydomain.com
       - cache2.mydomain.com
     use_ssh: false
@@ -89,6 +94,9 @@ For more information on how to configure the SWISS TXT CDN plugin, please read t
 
 #### Amazon Cloudfront
 For more information on how to configure the Amazon Cloudfront CDN plugin, please read the [plugins/Cloudfront.md](plugins/Cloudfront.md) file.
+
+#### MaxCDN
+For more information on how to configure the MaxCDN plugin, please read the [plugins/MaxCDN.md](plugins/MaxCDN.md) file.
 
 Ipecache Usage
 -----------

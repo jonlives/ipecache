@@ -1,3 +1,10 @@
+## 0.0.11 (September 3rd, 2015)
+
+Bugfixes:
+
+    - Added MaxCDN support (Thanks to @jmervine https://github.com/jonlives/ipecache/pull/13)
+
+
 ## 0.0.10 (January 8th, 2015)
 
 Bugfixes:
