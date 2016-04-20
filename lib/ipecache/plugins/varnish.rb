@@ -24,7 +24,7 @@ module Ipecache
         with = (use_ssh) ? "ssh curl" : "curl";
 
         urls.each do |u|
-          url = u.chomp
+          url = u.chomp.gsub(/\*$/,'').gsub(/\*/,'.*')
           plugin_puts ("#{request} #{url} through #{with}")
           hosts.each do |varnish|
             hostname = URI.parse(url).host
