@@ -62,6 +62,7 @@ module Ipecache
             )
             plugin_puts "#{result[:id]}: #{result[:status]}, #{result[:invalidation_batch][:paths][:items].length} item(s)"
           end
+          plugin_puts "This invalidation costs #{paths.length*0.005} Euro"
         end
       end
     end

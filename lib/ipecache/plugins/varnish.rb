@@ -11,7 +11,7 @@ module Ipecache
 
         hosts = config.hosts
         use_ssh = config.use_ssh
-        action = (config.action.upcase == PURGE) ? "PURGE" : "BAN"
+        action = (config.action.upcase == "PURGE") ? "PURGE" : "BAN"
         key = config.auth_key
 
         if !hosts
@@ -19,7 +19,7 @@ module Ipecache
           exit 1
         end
 
-        request = (action == BAN) ? "Banning" : "Purging"
+        request = (action == "BAN") ? "Banning" : "Purging"
 
         with = (use_ssh) ? "ssh curl" : "curl";
 
@@ -32,14 +32,14 @@ module Ipecache
             if use_ssh
               result = `ssh #{varnish} 'curl -X #{action} -s -o /dev/null -w \"%{http_code}\" --header \"X-BAN-Auth: #{key}\" --header \"Host: #{hostname}\" \"http://localhost#{path}\"'`
             else
-              result = `curl -X #{action} -s -o /dev/null -w "%{http_code}" --header \"X-BAN-Auth: #{key}\" --header "Host: #{hostname}" "http://#{varnish}#{path}"`
+              result = `curl -X #{action} -s -o /dev/null -w "%{http_code}" --header "X-BAN-Auth: #{key}" --header "Host: #{hostname}" "http://#{varnish}#{path}"`
             end
             if result.include?("200")
-              plugin_puts "--Purged from #{varnish} sucessfully"
+              plugin_puts "--#{request} from #{varnish} sucessfully"
             elsif result.include?("404")
-              plugin_puts "--Purge from #{varnish} not needed, asset not found"
+              plugin_puts "--#{action} from #{varnish} not needed, asset not found"
             else
-              plugin_puts_error(url,"--Purge from #{varnish} failed with http_code = #{result}")
+              plugin_puts_error(url,"--#{action} from #{varnish} failed with http_code = #{result}")
             end
 
           end

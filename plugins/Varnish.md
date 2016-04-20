@@ -11,7 +11,7 @@ Configuration
 -------------
 ```yaml
 plugins:
-  local:
+  varnish:
     hosts:
       - cache1.mydomain.com
       - cache2.mydomain.com
