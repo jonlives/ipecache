@@ -1,3 +1,9 @@
+## 0.0.12 (April 20th, 2016)
+
+Features:
+
+    - Varnish plugin (Thanks to @luisdavim https://github.com/jonlives/ipecache/pull/14)
+
 ## 0.0.11 (September 3rd, 2015)
 
 Bugfixes:
