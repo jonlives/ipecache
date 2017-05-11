@@ -18,7 +18,7 @@ module Ipecache
           exit 1
         elsif File.exists?(knife_file)
           Chef::Config.from_file(knife_file)
-          rest_api = Chef::REST.new(Chef::Config[:chef_server_url])
+          rest_api = Chef::ServerAPI.new(Chef::Config[:chef_server_url])
         else
           plugin_puts "Knife config file #{knife_file} doesn't exist."
           exit 1
@@ -39,7 +39,7 @@ module Ipecache
 
         urls.each do |u|
           url = u.chomp
-          plugin_puts ("Purging #{url}")
+          plugin_puts "Purging #{url}"
           nodes_ats_fqdns.each do |ats|
             hostname = URI.parse(url).host
             path = URI.parse(url).path
