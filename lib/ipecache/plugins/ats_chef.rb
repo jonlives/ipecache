@@ -34,7 +34,7 @@ module Ipecache
         nodes_ats_fqdns = []
         nodes_ats = rest_api.get_rest("/search/node?q=role:#{chef_role}" )
         nodes_ats["rows"].each do |n|
-          nodes_ats_fqdns <<  n.fqdn unless n.nil?
+          nodes_ats_fqdns <<  n['automatic']['fqdn'] unless n.nil?
         end
 
         urls.each do |u|
