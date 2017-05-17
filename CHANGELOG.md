@@ -1,3 +1,9 @@
+## 0.0.14 (May 17th, 2017)
+
+Bugfixes:
+
+    - Fix hef attribute naming in ATS plugin (Thanks to @lozzd https://github.com/jonlives/ipecache/pull/16)
+	
 ## 0.0.13 (May 11th, 2017)
 
 Features:
