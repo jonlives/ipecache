@@ -46,13 +46,14 @@ module Ipecache
 
           response_json = JSON.parse(response.body)
           response_httpStatus = response_json['httpStatus']
+          response_progressUri = response_json['progressUri']
 
           if response_httpStatus != 201
             plugin_puts_error(url,"Purge failed!")
             plugin_puts response.body
             exit 1 unless continue_on_error
           else
-            plugin_puts "Purge successful!"
+            plugin_puts "Purge successful! [progressUri: https://api.ccu.akamai.com#{response_progressUri}]"
           end
         end
       end
