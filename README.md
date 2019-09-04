@@ -48,8 +48,10 @@ plugins:
     secret: abc123
     zone: 1234
   akamai:
-    username: myusername
-    password: mypassword
+    client_secret: xxxxxxx
+    host: xxxxxxx
+    access_token: xxxxxxx
+    client_token: xxxxxxx
   cloudflare:
     login: foo@bar.com
     api_key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
