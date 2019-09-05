@@ -2,47 +2,71 @@ require 'ipecache/plugins/plugin'
 
 module Ipecache
   module Plugins
-    class Akamai < Plugin
+    class AKAMAI < Plugin
       name :akamai
       hooks :cdn_purge
 
       def perform
-        safe_require 'faraday_middleware'
         safe_require 'json'
+        safe_require 'akamai/edgegrid'
+        safe_require 'net/http'
+        safe_require 'uri'
 
-        username = config.username
-        password = config.password
+        client_secret = config.client_secret
+        host = config.host
+        access_token = config.access_token
+        client_token = config.client_token
 
-        if username.nil?
-          plugin_puts("Akamai username not specified, Exiting...")
+        if client_secret.nil?
+          plugin_puts("Akamai client_secret not specified, Exiting...")
           exit 1
         end
 
-        if password.nil?
-          plugin_puts("Akamai password key not specified, Exiting...")
+        if host.nil?
+          plugin_puts("Akamai host not specified, Exiting...")
+          exit 1
+        end
+
+        if access_token.nil?
+          plugin_puts("Akamai access_token not specified, Exiting...")
+          exit 1
+        end
+
+        if client_token.nil?
+          plugin_puts("Akamai client_token not specified, Exiting...")
           exit 1
         end
 
         plugin_puts "Beginning URL Purge from Akamai..."
 
+        baseuri = URI("https://#{host}/")
+
+        http = Akamai::Edgegrid::HTTP.new(
+          address=baseuri.host,
+          port=baseuri.port
+        )
+
+        http.setup_edgegrid(
+          :client_token => client_token,
+          :client_secret => client_secret,
+          :access_token => access_token,
+          :max_body => 128 * 1024
+        )
+
         urls.each do |u|
           url = u.chomp
           plugin_puts ("Purging #{url}")
 
-          connection = Faraday::Connection.new(
-              {:url => "https://api.ccu.akamai.com",
-              :headers => { :accept =>  'application/json',
-                            :content_type =>  'application/json',
-                            :user_agent => 'Ipecache',
-                          },
-              :ssl => { :verify => true }
-              }) do |builder|
-            builder.request  :json
-            builder.basic_auth(username,password)
-            builder.adapter Faraday.default_adapter
-          end
+          post_request = Net::HTTP::Post.new(
+            URI.join(baseuri.to_s, "/ccu/v3/delete/url/production").to_s,
+            initheader = { 'Content-Type' => 'application/json' }
+          )
 
-          response = connection.post("/ccu/v2/queues/default", "{\"objects\":[\"#{url}\"]}")
+          post_request.body = {
+            "objects" => ["#{url}"]
+          }.to_json
+
+          response = http.request(post_request)
 
           response_json = JSON.parse(response.body)
           response_httpStatus = response_json['httpStatus']

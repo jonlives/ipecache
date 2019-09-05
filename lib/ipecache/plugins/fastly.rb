@@ -9,7 +9,7 @@ module Ipecache
 
       def perform
         safe_require 'uri'
-
+        safe_require 'openssl'
         api_key = config.api_key
 
         if api_key.nil?

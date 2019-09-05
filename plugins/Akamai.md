@@ -11,8 +11,10 @@ Configuration
 ```yaml
 plugins:
   akamai:
-    username: foo
-    password: bar
+    client_secret: xxxxxxx
+    host: xxxxxxx
+    access_token: xxxxxxx
+    client_token: xxxxxxx
 ```
 
 #### username
