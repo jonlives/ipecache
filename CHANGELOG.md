@@ -1,3 +1,9 @@
+## 0.0.15 (Sept 5th, 2019)
+
+Bugfixes:
+
+    - Update Akamai API to v3 (Thanks to @dolvany https://github.com/jonlives/ipecache/pull/17)
+	
 ## 0.0.14 (May 17th, 2017)
 
 Bugfixes:
