@@ -21,4 +21,5 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'public_suffix', '>= 1.4.2'
   gem.add_runtime_dependency 'aws-sdk-v1', '>= 1.0'
   gem.add_runtime_dependency 'maxcdn', '>= 0.2.1'
+  gem.add_runtime_dependency 'akamai-edgegrid', '>= 1.0.7'
 end
