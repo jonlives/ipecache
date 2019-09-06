@@ -1,3 +1,10 @@
+## 0.0.16 (Sept 6th, 2019)
+
+Bugfixes:
+
+    - Update to add missing runtime_dependency from 0.0.15
+	
+
 ## 0.0.15 (Sept 5th, 2019)
 
 Bugfixes:
